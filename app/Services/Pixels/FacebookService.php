@@ -19,13 +19,19 @@ class FacebookService
         $this->pixelId = $pixel->value['pixel_id'];
     }
 
-    public function sendPixel(string $eventName): void
+    public function sendPixel(string $eventName, $player): void
     {
         $data = json_encode([
             'event_name' => $eventName,
             'event_time' => time(),
-            //'event_source_url' => config('app.url'),
-            //'user_data' => [],
+            'user_data' => [
+                'em' => hash('sha256', $player->email),
+                'ph' => hash('sha256', $player->phone),
+                'fn' => hash('sha256', $player->name),
+                'ln' => hash('sha256', $player->name),
+                'external_id' => hash('sha256', $player->external_id),
+            ],
+
             //'custom_data' => $eventData,
         ]);
 

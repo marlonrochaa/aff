@@ -30,7 +30,7 @@ class SyncPixel extends Command
 
         $this->output->progressStart($total);
         
-        $this->sendPixel('PageView', app(FacebookService::class));
+        $this->sendPixel('TesteVoa', app(FacebookService::class));
 
         $this->output->progressAdvance();
 
@@ -44,7 +44,7 @@ class SyncPixel extends Command
      */
     public function sendPixel(string $eventName, FacebookService $facebookService): void
     {
-        $facebookService->sendPixel($eventName);
+        //$facebookService->sendPixel($eventName);
         sleep(2);
     }
 }
