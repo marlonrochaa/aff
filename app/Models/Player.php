@@ -18,6 +18,7 @@ class Player extends Model
 
     public function params()
     {
-        return $this->hasOne(Param::class);
+        //pega o utlima parametro adicionado ao player
+        return $this->hasMany(Param::class)->latest();
     }
 }

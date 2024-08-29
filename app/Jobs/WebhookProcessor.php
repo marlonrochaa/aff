@@ -29,6 +29,11 @@ class WebhookProcessor implements ShouldQueue
     {
         $eventName = '';
 
+        //verifica se o params do player não existe ou se o utm_source é diferente de 269578
+        if (!$this->webhookEvent->player->params->isEmpty() || $this->webhookEvent->player->params->first()->parameters['utm_source'] !== '269578') {
+            return;
+        }
+
         switch ($this->webhookEvent->event_type) {
             case 1:
                 $eventName = 'Lead';
