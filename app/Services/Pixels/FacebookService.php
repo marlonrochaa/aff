@@ -31,9 +31,14 @@ class FacebookService
                 'ln' => hash('sha256', $player->name),
                 'external_id' => hash('sha256', $player->external_id),
             ],
-
-            //'custom_data' => $eventData,
         ]);
+
+        if (!$player->params->isEmpty()) {
+            $data['custom_data']['utm_source'] = $player->params->first()->parameters['utm_source'];
+            $data['custom_data']['utm_campaign'] = $player->params->first()->parameters['utm_campaign'];
+            //$data['custom_data']['utm_medium'] = $player->params->first()->parameters['utm_medium'];
+            $data['custom_data']['utm_content'] = $player->params->first()->parameters['utm_content'];
+        }
 
         $reponse = Http::post("https://graph.facebook.com/v19.0/{$this->pixelId}/events", [
             'data' => [
