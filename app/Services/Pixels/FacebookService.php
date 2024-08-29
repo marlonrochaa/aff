@@ -21,7 +21,7 @@ class FacebookService
 
     public function sendPixel(string $eventName, $player): void
     {
-        $data = json_encode([
+        $data = [
             'event_name' => $eventName,
             'event_time' => time(),
             'user_data' => [
@@ -31,18 +31,21 @@ class FacebookService
                 'ln' => hash('sha256', $player->name),
                 'external_id' => hash('sha256', $player->external_id),
             ],
-        ]);
-
+            'custom_data' => [],
+        ];
+        
         if (!$player->params->isEmpty()) {
             $data['custom_data']['utm_source'] = $player->params->first()->parameters['utm_source'];
             $data['custom_data']['utm_campaign'] = $player->params->first()->parameters['utm_campaign'];
             //$data['custom_data']['utm_medium'] = $player->params->first()->parameters['utm_medium'];
             $data['custom_data']['utm_content'] = $player->params->first()->parameters['utm_content'];
         }
+        
+        $jsonData = json_encode($data);
 
         $reponse = Http::post("https://graph.facebook.com/v19.0/{$this->pixelId}/events", [
             'data' => [
-                $data,
+                $jsonData,
             ],
             'access_token' => $this->accessToken,
         ]);
