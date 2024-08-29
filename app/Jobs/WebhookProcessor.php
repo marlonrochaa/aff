@@ -39,7 +39,7 @@ class WebhookProcessor implements ShouldQueue
 
         switch ($this->webhookEvent->event_type) {
             case 1:
-                $eventName = 'Lead';
+                $eventName = 'betvoa_lead';
                 break;
             case 2:
                 $eventName = 'Ftd';
