@@ -51,6 +51,7 @@ class FacebookService
         ]);
 
         //salva o log
+        LOG::info(json_encode($jsonData));
         Log::info($reponse->json());
     }
 }
