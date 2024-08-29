@@ -29,7 +29,11 @@ class WebhookProcessor implements ShouldQueue
     {
         $eventName = '';
 
-        if ($this->webhookEvent->player->params->isEmpty() || $this->webhookEvent->player->params->first()->parameters['utm_source'] !== '269578') {
+        if ($this->webhookEvent->player->params->isEmpty()) {
+            return;
+        }
+
+        if($this->webhookEvent->player->params->first()->parameters['utm_source'] != '269578') {
             return;
         }
 
