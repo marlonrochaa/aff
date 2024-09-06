@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'taxfiscal' => [
+        'url' => env('TAXFISCAL_URL'),
+        'token' => env('TAXFISCAL_TOKEN'),
+    ],
+
 ];

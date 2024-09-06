@@ -2,18 +2,18 @@
 
 namespace App\Jobs;
 
+use App\Models\Affiliate;
 use App\Services\Pixels\FacebookService;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
 class WebhookProcessor implements ShouldQueue
 {
-    use Queueable;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     protected $webhookEvent;
-
     /**
      * Create a new job instance.
      */
@@ -25,7 +25,7 @@ class WebhookProcessor implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(FacebookService $facebookService): void
+    public function handle(): void
     {
         $eventName = '';
 
@@ -33,7 +33,9 @@ class WebhookProcessor implements ShouldQueue
             return;
         }
 
-        if($this->webhookEvent->player->params->first()->parameters['utm_source'] != '269578') {
+        //verifica o utm_source se existe na tabela affiliates na coluna external_id 
+        $affiliate = Affiliate::where('external_id', $this->webhookEvent->player->params->first()->parameters['utm_source'])->first();
+        if($affiliate) {
             return;
         }
 
@@ -48,7 +50,8 @@ class WebhookProcessor implements ShouldQueue
                 $eventName = 'Redeposit';
                 break;
         }
+        $facebookService = new FacebookService($affiliate);
 
-        $facebookService->sendPixel($eventName, $this->webhookEvent->player);
+        $facebookService->sendPixel($eventName, $this->webhookEvent->player, $affiliate);
     }
 }

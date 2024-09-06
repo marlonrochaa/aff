@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('pixels', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('type');
+            $table->string('name');
+            $table->unsignedTinyInteger('type')->default(1);
             $table->json('value');
+            $table->foreignId('affiliate_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

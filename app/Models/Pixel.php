@@ -10,8 +10,10 @@ class Pixel extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'type',
         'value',
+        'affiliate_id',
     ];
 
     protected $casts = [
@@ -19,4 +21,9 @@ class Pixel extends Model
     ];
 
     public const TYPE_FACEBOOK = 1;
+
+    public function affiliate()
+    {
+        return $this->belongsTo(Affiliate::class);
+    }
 }

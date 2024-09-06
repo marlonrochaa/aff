@@ -11,9 +11,11 @@ class FacebookService
     private $accessToken;
     private $pixelId;
 
-    public function __construct()
+    public function __construct($affiliate)
     {
-        $pixel = Pixel::where('type', Pixel::TYPE_FACEBOOK)->first();
+        $pixel = Pixel::where('type', Pixel::TYPE_FACEBOOK)
+        ->where('affiliate_id', $affiliate->id)
+        ->first();
 
         $this->accessToken = $pixel->value['access_token'];
         $this->pixelId = $pixel->value['pixel_id'];
