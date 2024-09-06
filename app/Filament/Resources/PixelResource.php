@@ -38,7 +38,7 @@ class PixelResource extends Resource
                         Forms\Components\TextInput::make('value.pixel_id')
                         ->label('Pixel ID')
                         ->required(),
-                        Forms\Components\TextArea::make('value.access_token')
+                        Forms\Components\Textarea::make('value.access_token')
                             ->label('Access Token')
                             ->rows(4)
                             ->required(),
