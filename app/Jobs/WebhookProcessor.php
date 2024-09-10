@@ -35,8 +35,8 @@ class WebhookProcessor implements ShouldQueue
 
         //verifica o utm_source se existe na tabela affiliates na coluna external_id 
         $affiliate = Affiliate::where('external_id', $this->webhookEvent->player->params->first()->parameters['utm_source'])->first();
-        
-        if(!$affiliate) {
+
+        if(!$affiliate) { 
             return;
         }
 
