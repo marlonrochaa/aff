@@ -34,6 +34,10 @@ class AffiliateResource extends Resource
                 Forms\Components\TextInput::make('external_id')
                     ->label('Id smartico')
                     ->required(),
+                Forms\Components\BelongsToSelect::make('profile_id')
+                    ->label('Perfil')
+                    ->relationship('profile', 'name')
+                    ->required(),
             ]);
     }
 
@@ -51,6 +55,10 @@ class AffiliateResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('external_id')
                     ->label('Id smartico')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('profile.name')
+                    ->label('Perfil')
                     ->searchable()
                     ->sortable(),
             ])

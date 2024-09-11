@@ -12,6 +12,12 @@ class Affiliate extends Model
     protected $fillable = [
         'name',
         'email',
-        'external_id'
+        'external_id',
+        'profile_id'
     ];
+
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
 }

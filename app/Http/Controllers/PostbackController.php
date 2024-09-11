@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Jobs\WebhookProcessor;
 use App\Models\Param;
+use App\Models\Pixel;
 use App\Models\Player;
 use App\Models\WebhookEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PostbackController extends Controller
 {
@@ -51,6 +53,13 @@ class PostbackController extends Controller
         //envia o pixel para o facebook atraves do job
         WebhookProcessor::dispatch($webhookEvent);
 
+        return response()->json(['status' => 'success']);
+    }
+
+    public function test(Pixel $pixel)
+    {
+        Log::info("message");
+        dd($pixel);
         return response()->json(['status' => 'success']);
     }
 }

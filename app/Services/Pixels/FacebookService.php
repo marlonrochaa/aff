@@ -56,4 +56,21 @@ class FacebookService
         LOG::info(json_encode($jsonData));
         Log::info($reponse->json());
     }
+
+    //envia evento teste de pixel do evento betvoa_lead e ftd e  Redeposit
+    public function sendTestPixel()
+    {
+        $player = new \stdClass();
+        $player->email = 'test@email.com';
+        $player->phone = '123456789';
+        $player->name = 'Teste';
+        $player->external_id = '123456789';
+        $player->params = collect([]);
+
+        $this->sendPixel('betvoa_lead', $player);
+        $this->sendPixel('Ftd', $player);
+        $this->sendPixel('Redeposit', $player);
+
+        return true;
+    }
 }

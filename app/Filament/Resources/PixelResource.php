@@ -3,16 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PixelResource\Pages;
-use App\Filament\Resources\PixelResource\RelationManagers;
 use App\Models\Pixel;
+use App\Services\Pixels\FacebookService;
 use Filament\Forms;
-use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Http;
 
 class PixelResource extends Resource
 {
@@ -65,6 +63,24 @@ class PixelResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label('Editar'),
+                Tables\Actions\Action::make('Testar Pixel')
+                ->requiresConfirmation()
+                ->icon('heroicon-o-rss')
+                ->action(function (Pixel $pixel) {
+                    $facebookService = new FacebookService($pixel->affiliate);
+
+                    if($facebookService->sendTestPixel()){
+                        return \Filament\Notifications\Notification::make()
+                                ->title('Eventos de teste enviados com sucesso')
+                                ->success()
+                                ->send();
+                    }
+                    
+                    return \Filament\Notifications\Notification::make()
+                        ->title('Falha no envio dos eventos de teste')
+                        ->danger()
+                        ->send();
+                })
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
