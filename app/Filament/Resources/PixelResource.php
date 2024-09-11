@@ -65,6 +65,7 @@ class PixelResource extends Resource
                 Tables\Actions\EditAction::make()->label('Editar'),
                 Tables\Actions\Action::make('Testar Pixel')
                 ->requiresConfirmation()
+                ->modalDescription('Deseja enviar eventos de teste para o pixel?')
                 ->icon('heroicon-o-rss')
                 ->action(function (Pixel $pixel) {
                     $facebookService = new FacebookService($pixel->affiliate);
