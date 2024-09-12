@@ -78,6 +78,8 @@ class SyncCommission extends Command
                     ]
                 );
             }
+
+            sleep(1);
         }
     }
 }
