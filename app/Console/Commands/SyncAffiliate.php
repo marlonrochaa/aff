@@ -29,23 +29,24 @@ class SyncAffiliate extends Command
     {   
         $response = Http::withHeaders([
             'Authorization' => env('API_KEY'),
-        ])->get(env('API_URL'));
+        ])->get(env('API_URL') . '/af2_aff_op?filter={%22aff_status_id%22%3A2}');
 
         //pega response da api
         $affiliates = $response->json();
 
         foreach ($affiliates as $affiliate) {
-            $x = Affiliate::updateOrCreate(
-                ['external_id' => $affiliate['id']],
+            Affiliate::updateOrCreate(
+                [
+                    'external_id' => $affiliate['id'],
+                ],
                 [
                     'name' => $affiliate['affiliate_name'],
                     'email' => $affiliate['bo_user_email'],
                     'external_id' => $affiliate['id'],
-                    'profile_id' => 1
+                    'profile_id' => 1,
+                    'balance' => $affiliate['balance'],
                 ]
             );
-
-            dd(1);
         }
     }
 }

@@ -13,11 +13,17 @@ class Affiliate extends Model
         'name',
         'email',
         'external_id',
-        'profile_id'
+        'profile_id',
+        'balance',
     ];
 
     public function profile()
     {
         return $this->belongsTo(Profile::class);
+    }
+
+    public function commission()
+    {
+        return $this->hasOne(AffiliateCommission::class);
     }
 }

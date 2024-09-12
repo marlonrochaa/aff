@@ -5,6 +5,8 @@ namespace App\Providers\Filament;
 use App\Filament\Pages\Search;
 use App\Filament\Resources\AffiliateResource;
 use App\Filament\Resources\PixelResource;
+use App\Filament\Widgets\FtdChart;
+use App\Filament\Widgets\RegistrationCountChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -15,6 +17,7 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\LegacyComponents\Widget;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -70,8 +73,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                //Widgets\FilamentInfoWidget::class,
+                //Widgets\AccountWidget::class,
+                
             ])
             ->middleware([
                 EncryptCookies::class,
