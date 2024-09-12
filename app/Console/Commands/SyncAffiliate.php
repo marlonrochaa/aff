@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Affiliate;
+use App\Models\Manager;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -35,6 +36,16 @@ class SyncAffiliate extends Command
         $affiliates = $response->json();
 
         foreach ($affiliates as $affiliate) {
+            $manager = Manager::firstOrCreate(
+                [
+                    'external_id' => $affiliate['manager_id'],
+                ],
+                [
+                    'name' => $affiliate['manager_contacts']['first_name'] . ' ' . $affiliate['manager_contacts']['last_name'],
+                    'email' => $affiliate['manager_contacts']['email'],
+                ]
+            );
+
             Affiliate::updateOrCreate(
                 [
                     'external_id' => $affiliate['id'],
@@ -45,6 +56,7 @@ class SyncAffiliate extends Command
                     'external_id' => $affiliate['id'],
                     'profile_id' => 1,
                     'balance' => $affiliate['balance'],
+                    'manager_id' => $manager->id ?? null,
                 ]
             );
         }

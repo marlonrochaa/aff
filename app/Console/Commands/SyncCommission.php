@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Affiliate;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class SyncCommission extends Command
 {
@@ -37,6 +38,7 @@ class SyncCommission extends Command
             $value = $response->json();
 
             if(!isset($value['data'])) {
+                Log::info('No data for affiliate ' . $affiliate->external_id. json_encode($value)); 
                 continue;
             }
 

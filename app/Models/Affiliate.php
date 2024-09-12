@@ -15,6 +15,7 @@ class Affiliate extends Model
         'external_id',
         'profile_id',
         'balance',
+        'manager_id',
     ];
 
     public function profile()
