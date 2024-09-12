@@ -24,18 +24,15 @@ class StatsDepositTotal extends BaseWidget
 
     protected function getCard($column)
     {
-        $startDate = $this->filters['startDate'] ?? null;
-        $endDate = $this->filters['endDate'] ?? null;
         $affiliate_id = $this->filters['affiliate_id'] ?? null;
         $profile_id = $this->filters['profile_id'] ?? null;
         $manager_id = $this->filters['manager_id'] ?? null;
         
-        $data = AffiliateCommission::selectRaw('DATE(dt) as date, SUM('.$column.') as total')
+        $data = AffiliateCommission::selectRaw('SUM('.$column.') as total')
         ->join('affiliates', 'affiliate_commissions.affiliate_id', '=', 'affiliates.id')
-        ->groupBy('date')
-        ->when($startDate, function ($query) use ($startDate, $endDate) {
-            return $query->where('dt', '>=', $startDate)
-            ->where('dt', '<=', $endDate);
+        ->when($this->filters['startDate'], function ($query) {
+            return $query->where('dt', '>=', $this->filters['startDate'])
+            ->where('dt', '<=', $this->filters['endDate']);
         })
         ->when($affiliate_id, function ($query) use ($affiliate_id) {
             return $query->whereIn('affiliate_id', $affiliate_id);
@@ -46,7 +43,6 @@ class StatsDepositTotal extends BaseWidget
         ->when($manager_id, function ($query) use ($manager_id) {
             return $query->whereIn('affiliates.manager_id', $manager_id);
         })
-        ->orderByRaw('DATE(dt) desc')
         ->get();
 
         return $data->first()->total ?? 0;
