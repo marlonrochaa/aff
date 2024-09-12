@@ -36,6 +36,10 @@ class SyncCommission extends Command
 
             $value = $response->json();
 
+            if(!isset($value['data'])) {
+                continue;
+            }
+
             foreach($value['data'] as $commission) {
                 $date = date('Y-m-d', strtotime($commission['dt']));
                 $affiliate->commission()->updateOrCreate(

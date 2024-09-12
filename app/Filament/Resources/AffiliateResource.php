@@ -53,6 +53,10 @@ class AffiliateResource extends Resource
                     ->label('Email')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('balance')
+                    ->label('Balance')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('external_id')
                     ->label('Id smartico')
                     ->searchable()
