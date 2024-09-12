@@ -6,6 +6,7 @@ use App\Models\Affiliate;
 use App\Models\Manager;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class SyncAffiliate extends Command
 {
@@ -28,6 +29,8 @@ class SyncAffiliate extends Command
      */
     public function handle()
     {   
+        Log::info("RODOU O CRON do sync-affiliate");
+        
         $response = Http::withHeaders([
             'Authorization' => env('API_KEY'),
         ])->get(env('API_URL') . '/af2_aff_op?filter={%22aff_status_id%22%3A2}');
