@@ -14,7 +14,10 @@ use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 class Dashboard extends BaseDashboard
 {
     use HasFiltersForm;
-    protected static string $routePath = 'finance';
+    protected static ?string $title = 'Dashboard Smartico';
+    protected static ?string $icon = 'heroicon-o-home';
+    protected static ?string $navigationLabel = 'Dashboard';
+
     public function filtersForm(Form $form): Form
     {
         return $form

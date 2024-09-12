@@ -40,6 +40,10 @@ class WebhookProcessor implements ShouldQueue
             return;
         }
 
+        if(!$affiliate->pixel) {
+            return;
+        }
+
         switch ($this->webhookEvent->event_type) {
             case 1:
                 $eventName = 'betvoa_lead';

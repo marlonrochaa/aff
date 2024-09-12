@@ -23,6 +23,11 @@ class Affiliate extends Model
         return $this->belongsTo(Profile::class);
     }
 
+    public function pixel()
+    {
+        return $this->hasOne(Pixel::class);
+    }
+
     public function commission()
     {
         return $this->hasOne(AffiliateCommission::class);
