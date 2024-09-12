@@ -27,7 +27,7 @@ class Dashboard extends BaseDashboard
                         DatePicker::make('startDate')
                             ->label('Data Inicial')
                             ->required()
-                            ->default(now()->subDays(30)),
+                            ->default(now()->subDays(7)),
                         DatePicker::make('endDate')
                             ->label('Data Final')
                             ->required()
