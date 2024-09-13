@@ -31,38 +31,38 @@ class StatsDepositTotal extends BaseWidget
 
                     //$cards[] = Stat::make('Total de depósitos (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('deposit_total', $affiliate_id)))
                     //->color('red');
-                    $cards[] = Stat::make('Total de depósitos (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('deposit_total', $affiliate_id)))
+                    $cards[] = Stat::make('Total de depósitos (' . $affiliate->name . ')', $this->formatValue($this->getCard('deposit_total', $affiliate_id)))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'Total de depósitos (Afiliado: ' . $affiliate->name . ')', 
+                            'title' => 'Total de depósitos (' . $affiliate->name . ')', 
                             'value' => $this->formatValue($this->getCard('deposit_total', $affiliate_id)),
                             'color' => 'red'
                         ]
                     )
                     ;
                     
-                    $cards[] = Stat::make('FTDs Total (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('ftd_total', $affiliate_id)))
+                    $cards[] = Stat::make('FTDs Total (' . $affiliate->name . ')', $this->formatValue($this->getCard('ftd_total', $affiliate_id)))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'FTDs Total (Afiliado: ' . $affiliate->name . ')', 
+                            'title' => 'FTDs Total (' . $affiliate->name . ')', 
                             'value' => $this->formatValue($this->getCard('ftd_total', $affiliate_id)),
                             'color' => 'blue'
                         ]
                     );
 
-                    $cards[] = Stat::make('FTDs Count (Afiliado: ' . $affiliate->name . ')', $this->getCard('ftd_count', $affiliate_id))
+                    $cards[] = Stat::make('FTDs Count (' . $affiliate->name . ')', $this->getCard('ftd_count', $affiliate_id))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'FTDs Count (Afiliado: ' . $affiliate->name . ')', 
+                            'title' => 'FTDs Count (' . $affiliate->name . ')', 
                             'value' => $this->getCard('ftd_count', $affiliate_id),
                             'color' => 'green'
                         ]
                     );
 
-                    $cards[] = Stat::make('Total de registros (Afiliado: ' . $affiliate->name . ')', $this->getCard('registration_count', $affiliate_id))
+                    $cards[] = Stat::make('Total de registros (' . $affiliate->name . ')', $this->getCard('registration_count', $affiliate_id))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'Total de registros (Afiliado: ' . $affiliate->name . ')', 
+                            'title' => 'Total de registros (' . $affiliate->name . ')', 
                             'value' => $this->getCard('registration_count', $affiliate_id),
                             'color' => 'yellow'
                         ]
@@ -74,34 +74,34 @@ class StatsDepositTotal extends BaseWidget
                 foreach ($this->filters['profile_id'] as $key => $profile_id) {
                     $profile = Profile::find($profile_id);
 
-                    $cards[] = Stat::make('Total de depósitos (Perfil: ' . $profile->name . ')', $this->formatValue($this->getCard('deposit_total', null, $profile_id)))
+                    $cards[] = Stat::make('Total de depósitos (' . $profile->name . ')', $this->formatValue($this->getCard('deposit_total', null, $profile_id)))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'Total de depósitos (Perfil: ' . $profile->name . ')', 
+                            'title' => 'Total de depósitos (' . $profile->name . ')', 
                             'value' => $this->formatValue($this->getCard('deposit_total', null, $profile_id)),
                             'color' => 'red'
                         ]
                     );
-                    $cards[] = Stat::make('FTDs Total (Perfil: ' . $profile->name . ')', $this->formatValue($this->getCard('ftd_total', null, $profile_id)))
+                    $cards[] = Stat::make('FTDs Total (' . $profile->name . ')', $this->formatValue($this->getCard('ftd_total', null, $profile_id)))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'FTDs Total (Perfil: ' . $profile->name . ')', 
+                            'title' => 'FTDs Total (' . $profile->name . ')', 
                             'value' => $this->formatValue($this->getCard('ftd_total', null, $profile_id)),
                             'color' => 'blue'
                         ]
                     );
-                    $cards[] = Stat::make('FTDs Count (Perfil: ' . $profile->name . ')', $this->getCard('ftd_count', null, $profile_id))
+                    $cards[] = Stat::make('FTDs Count (' . $profile->name . ')', $this->getCard('ftd_count', null, $profile_id))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'FTDs Count (Perfil: ' . $profile->name . ')', 
+                            'title' => 'FTDs Count (' . $profile->name . ')', 
                             'value' => $this->getCard('ftd_count', null, $profile_id),
                             'color' => 'green'
                         ]
                     );
-                    $cards[] = Stat::make('Total de registros (Perfil: ' . $profile->name . ')', $this->getCard('registration_count', null, $profile_id))
+                    $cards[] = Stat::make('Total de registros (' . $profile->name . ')', $this->getCard('registration_count', null, $profile_id))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'Total de registros (Perfil: ' . $profile->name . ')', 
+                            'title' => 'Total de registros (' . $profile->name . ')', 
                             'value' => $this->getCard('registration_count', null, $profile_id),
                             'color' => 'yellow'
                         ]
@@ -112,34 +112,34 @@ class StatsDepositTotal extends BaseWidget
             elseif ($this->filters['manager_id']) {
                 foreach ($this->filters['manager_id'] as $key => $manager_id) {
                     $manager = Manager::find($manager_id);
-                    $cards[] = Stat::make('Total de depósitos (Gerente: ' . $manager->name . ')', $this->formatValue($this->getCard('deposit_total', null, null, $manager_id)))
+                    $cards[] = Stat::make('Total de depósitos (' . $manager->name . ')', $this->formatValue($this->getCard('deposit_total', null, null, $manager_id)))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'Total de depósitos (Gerente: ' . $manager->name . ')', 
+                            'title' => 'Total de depósitos (' . $manager->name . ')', 
                             'value' => $this->formatValue($this->getCard('deposit_total', null, null, $manager_id)),
                             'color' => 'red'
                         ]
                     );
-                    $cards[] = Stat::make('FTDs Total (Gerente: ' . $manager->name . ')', $this->formatValue($this->getCard('ftd_total', null, null, $manager_id)))
+                    $cards[] = Stat::make('FTDs Total (' . $manager->name . ')', $this->formatValue($this->getCard('ftd_total', null, null, $manager_id)))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'FTDs Total (Gerente: ' . $manager->name . ')', 
+                            'title' => 'FTDs Total (' . $manager->name . ')', 
                             'value' => $this->formatValue($this->getCard('ftd_total', null, null, $manager_id)),
                             'color' => 'blue'
                         ]
                     );
-                    $cards[] = Stat::make('FTDs Count (Gerente: ' . $manager->name . ')', $this->formatValue($this->getCard('ftd_count', null, null, $manager_id)))
+                    $cards[] = Stat::make('FTDs Count (' . $manager->name . ')', $this->formatValue($this->getCard('ftd_count', null, null, $manager_id)))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'FTDs Count (Gerente: ' . $manager->name . ')', 
+                            'title' => 'FTDs Count (' . $manager->name . ')', 
                             'value' =>$this->getCard('ftd_count', null, null, $manager_id),
                             'color' => 'green'
                         ]
                     );
-                    $cards[] = Stat::make('Total de registros (Gerente: ' . $manager->name . ')', $this->formatValue($this->getCard('registration_count', null, null, $manager_id)))
+                    $cards[] = Stat::make('Total de registros (' . $manager->name . ')', $this->formatValue($this->getCard('registration_count', null, null, $manager_id)))
                     ->view('filament.widgets.custom-stat', 
                         [
-                            'title' => 'Total de registros (Gerente: ' . $manager->name . ')', 
+                            'title' => 'Total de registros (' . $manager->name . ')', 
                             'value' =>$this->getCard('registration_count', null, null, $manager_id),
                             'color' => 'yellow'
                         ]
