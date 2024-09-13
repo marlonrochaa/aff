@@ -36,7 +36,7 @@ class StatsTotal extends BaseWidget
         return  [
             Stat::make('Total de dépositos', $this->formatValue($this->getCard('deposit_amount'))),
             Stat::make('FTDs Total', $this->formatValue($this->getCard('ftd_amount'))),
-            Stat::make('FTDs Count', $this->formatValue($this->getCard('ftd_count'))),
+            Stat::make('FTDs Count', $this->getCard('ftd_count')),
             Stat::make('Total de registros', $this->getCard('registration')), 
         ];
     }
