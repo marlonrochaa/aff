@@ -43,7 +43,7 @@ class SyncSheet extends Command
         $spreadsheetId = '1cyg_LZejIfcxDzPVJXFgGP5mbHxXWxLo6SzZ96PLEYc';
 
         // Nome da aba e intervalo (por exemplo, "Sheet1!A1:D10")
-        $range = 'PRINCIPAL!A1:F360';
+        $range = 'PRINCIPAL!A1:P360';
 
         // Busca os dados da planilha
         $response = $service->spreadsheets_values->get($spreadsheetId, $range);
