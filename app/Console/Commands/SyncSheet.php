@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\FinancialReport;
 use Illuminate\Console\Command;
 use Google\Client;
 use Google\Service\Sheets;
@@ -42,23 +43,37 @@ class SyncSheet extends Command
         $spreadsheetId = '1cyg_LZejIfcxDzPVJXFgGP5mbHxXWxLo6SzZ96PLEYc';
 
         // Nome da aba e intervalo (por exemplo, "Sheet1!A1:D10")
-        $range = '';
+        $range = 'PRINCIPAL!A1:F360';
 
         // Busca os dados da planilha
         $response = $service->spreadsheets_values->get($spreadsheetId, $range);
         $values = $response->getValues();
 
-        dd($values);
-
         if (empty($values)) {
             $this->info('Nenhum dado encontrado.');
         } else {
+            unset($values[0]);
             foreach ($values as $row) {
-                // Aqui você pode processar cada linha da planilha
-                $this->info(implode(', ', $row));
+                $date = \Carbon\Carbon::createFromFormat('d/m/Y', $row[0])->format('Y-m-d');
+
+                FinancialReport::updateOrCreate([
+                    'date' => $date,
+                ], [
+                    'deposit_count' => $row[1],
+                    'deposit_amount' => $this->formatCurrency($row[2]),
+                    'withdrawal_count' => $row[4],
+                    'withdrawal_amount' => $this->formatCurrency($row[5]),
+                ]);
             }
         }
 
         return 0;
+    }
+
+    //formato o valor para decimal
+    private function formatCurrency($value)
+    {
+        $money = str_replace(['R$',], ['', ''], $value);
+        return str_replace(',', '.', str_replace('.', '', $money));
     }
 }
