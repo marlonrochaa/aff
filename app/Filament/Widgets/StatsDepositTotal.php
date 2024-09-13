@@ -53,20 +53,20 @@ class StatsDepositTotal extends BaseWidget
                         ]
                     );
 
-                    $cards[] = Stat::make('FTDs Count (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('ftd_count', $affiliate_id)))
+                    $cards[] = Stat::make('FTDs Count (Afiliado: ' . $affiliate->name . ')', $this->getCard('ftd_count', $affiliate_id))
                     ->view('filament.widgets.custom-stat', 
                         [
                             'title' => 'FTDs Count (Afiliado: ' . $affiliate->name . ')', 
-                            'value' => $this->formatValue($this->getCard('ftd_count', $affiliate_id)),
+                            'value' => $this->getCard('ftd_count', $affiliate_id),
                             'color' => 'green'
                         ]
                     );
 
-                    $cards[] = Stat::make('Total de registros (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('registration_count', $affiliate_id)))
+                    $cards[] = Stat::make('Total de registros (Afiliado: ' . $affiliate->name . ')', $this->getCard('registration_count', $affiliate_id))
                     ->view('filament.widgets.custom-stat', 
                         [
                             'title' => 'Total de registros (Afiliado: ' . $affiliate->name . ')', 
-                            'value' => $this->formatValue($this->getCard('registration_count', $affiliate_id)),
+                            'value' => $this->getCard('registration_count', $affiliate_id),
                             'color' => 'yellow'
                         ]
                     );
@@ -93,19 +93,19 @@ class StatsDepositTotal extends BaseWidget
                             'color' => 'blue'
                         ]
                     );
-                    $cards[] = Stat::make('FTDs Count (Perfil: ' . $profile->name . ')', $this->formatValue($this->getCard('ftd_count', null, $profile_id)))
+                    $cards[] = Stat::make('FTDs Count (Perfil: ' . $profile->name . ')', $this->getCard('ftd_count', null, $profile_id))
                     ->view('filament.widgets.custom-stat', 
                         [
                             'title' => 'FTDs Count (Perfil: ' . $profile->name . ')', 
-                            'value' => $this->formatValue($this->getCard('ftd_count', null, $profile_id)),
+                            'value' => $this->getCard('ftd_count', null, $profile_id),
                             'color' => 'green'
                         ]
                     );
-                    $cards[] = Stat::make('Total de registros (Perfil: ' . $profile->name . ')', $this->formatValue($this->getCard('registration_count', null, $profile_id)))
+                    $cards[] = Stat::make('Total de registros (Perfil: ' . $profile->name . ')', $this->getCard('registration_count', null, $profile_id))
                     ->view('filament.widgets.custom-stat', 
                         [
                             'title' => 'Total de registros (Perfil: ' . $profile->name . ')', 
-                            'value' => $this->formatValue($this->getCard('registration_count', null, $profile_id)),
+                            'value' => $this->getCard('registration_count', null, $profile_id),
                             'color' => 'yellow'
                         ]
                     );
