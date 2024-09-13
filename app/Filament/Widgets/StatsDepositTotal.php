@@ -6,7 +6,6 @@ use App\Models\Affiliate;
 use App\Models\AffiliateCommission;
 use App\Models\Manager;
 use App\Models\Profile;
-use Filament\Support\Colors\Color;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Filament\Widgets\Concerns\InteractsWithPageFilters;
@@ -15,10 +14,7 @@ class StatsDepositTotal extends BaseWidget
 {
     protected static ?int $sort = 1;
     use InteractsWithPageFilters;
-    protected int | string | array $columnSpan = '2';
-    protected int | string | array $rowSpan = '5';
     protected string $title = 'Estatísticas de Depósitos';
-    
 
     protected function getStats(): array
     {
@@ -42,7 +38,8 @@ class StatsDepositTotal extends BaseWidget
                             'value' => $this->formatValue($this->getCard('deposit_total', $affiliate_id)),
                             'color' => 'red'
                         ]
-                    );
+                    )
+                    ;
                     
                     $cards[] = Stat::make('FTDs Total (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('ftd_total', $affiliate_id)))
                     ->view('filament.widgets.custom-stat', 
@@ -152,7 +149,7 @@ class StatsDepositTotal extends BaseWidget
         }
 
         // Se nenhum filtro for passado, retorna cards padrão (ou pode retornar vazio)
-        return $cards ?: [
+        return  $cards ?: [
             Stat::make('Total de dépositos', $this->formatValue($this->getCard('deposit_total'))),
             Stat::make('FTDs Total', $this->formatValue($this->getCard('ftd_total'))),
             Stat::make('FTDs Count', $this->formatValue($this->getCard('ftd_count'))),
@@ -187,5 +184,10 @@ class StatsDepositTotal extends BaseWidget
     protected function formatValue($value)
     {
         return 'R$ ' . number_format($value, 2, ',', '.');
+    }
+
+    protected function getColumns(): int
+    {
+        return 4;
     }
 }
