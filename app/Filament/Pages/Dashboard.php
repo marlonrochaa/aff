@@ -1,6 +1,11 @@
 <?php
 namespace App\Filament\Pages;
 
+use App\Filament\Widgets\DepositTotalChart;
+use App\Filament\Widgets\FtdCountChart;
+use App\Filament\Widgets\FtdTotalChart;
+use App\Filament\Widgets\RegistrationCountChart;
+use App\Filament\Widgets\StatsDepositTotal;
 use App\Models\Affiliate;
 use App\Models\Manager;
 use App\Models\Profile;
@@ -10,7 +15,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Pages\Dashboard as BaseDashboard;
 use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
- 
+
 class Dashboard extends BaseDashboard
 {
     use HasFiltersForm;
@@ -53,5 +58,17 @@ class Dashboard extends BaseDashboard
                     ])
                     ->columns(5),
             ]);
+    }
+
+    public function getWidgets(): array
+    {
+        return [
+            StatsDepositTotal::class,
+            DepositTotalChart::class,
+            FtdCountChart::class,
+            FtdTotalChart::class,
+            RegistrationCountChart::class,
+
+        ];
     }
 }

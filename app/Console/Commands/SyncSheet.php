@@ -63,6 +63,9 @@ class SyncSheet extends Command
                     'deposit_amount' => $this->formatCurrency($row[2]),
                     'withdrawal_count' => $row[4],
                     'withdrawal_amount' => $this->formatCurrency($row[5]),
+                    'ftd_count' => $this->formatCurrency($row[12]),
+                    'ftd_amount' => $this->formatCurrency($row[13]),
+                    'registration' => $this->formatCurrency($row[15]),
                 ]);
             }
         }

@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->date('date'); 
             $table->integer('deposit_count');
+            $table->integer('ftd_count');
+            $table->decimal('ftd_amount', 10, 2);
             $table->decimal('deposit_amount', 10, 2);
             $table->integer('withdrawal_count');
             $table->decimal('withdrawal_amount', 10, 2);
+            $table->integer('registration');
             $table->timestamps();
         });
     }
