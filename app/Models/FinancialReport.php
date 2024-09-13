@@ -15,5 +15,8 @@ class FinancialReport extends Model
         'deposit_amount',
         'withdrawal_count',
         'withdrawal_amount',
+        'ftd_count',
+        'ftd_amount',
+        'registration'
     ];
 }
