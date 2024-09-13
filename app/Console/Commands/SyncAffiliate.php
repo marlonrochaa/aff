@@ -57,9 +57,9 @@ class SyncAffiliate extends Command
                     'name' => $affiliate['affiliate_name'],
                     'email' => $affiliate['bo_user_email'],
                     'external_id' => $affiliate['id'],
-                    'profile_id' => 1,
+                    'profile_id' => in_array($manager->external_id, [724091, 731856]) ? 2 : 1,
                     'balance' => $affiliate['balance'],
-                    'manager_id' => $manager->id ?? null,
+                    'manager_id' => $manager->id,
                 ]
             );
         }

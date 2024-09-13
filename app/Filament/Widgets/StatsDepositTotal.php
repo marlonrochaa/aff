@@ -6,6 +6,7 @@ use App\Models\Affiliate;
 use App\Models\AffiliateCommission;
 use App\Models\Manager;
 use App\Models\Profile;
+use Filament\Support\Colors\Color;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Filament\Widgets\Concerns\InteractsWithPageFilters;
@@ -32,10 +33,43 @@ class StatsDepositTotal extends BaseWidget
                 foreach ($this->filters['affiliate_id'] as $key => $affiliate_id) {
                     $affiliate = Affiliate::find($affiliate_id);
 
-                    $cards[] = Stat::make('Total de depósitos (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('deposit_total', $affiliate_id)));
-                    $cards[] = Stat::make('FTDs Total (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('ftd_total', $affiliate_id)));
-                    $cards[] = Stat::make('FTDs Count (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('ftd_count', $affiliate_id)));
-                    $cards[] = Stat::make('Total de registros (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('registration_count', $affiliate_id)));
+                    //$cards[] = Stat::make('Total de depósitos (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('deposit_total', $affiliate_id)))
+                    //->color('red');
+                    $cards[] = Stat::make('Total de depósitos (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('deposit_total', $affiliate_id)))
+                    ->view('filament.widgets.custom-stat', 
+                        [
+                            'title' => 'Total de depósitos (Afiliado: ' . $affiliate->name . ')', 
+                            'value' => $this->formatValue($this->getCard('deposit_total', $affiliate_id)),
+                            'color' => 'red'
+                        ]
+                    );
+                    
+                    $cards[] = Stat::make('FTDs Total (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('ftd_total', $affiliate_id)))
+                    ->view('filament.widgets.custom-stat', 
+                        [
+                            'title' => 'FTDs Total (Afiliado: ' . $affiliate->name . ')', 
+                            'value' => $this->formatValue($this->getCard('ftd_total', $affiliate_id)),
+                            'color' => 'blue'
+                        ]
+                    );
+
+                    $cards[] = Stat::make('FTDs Count (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('ftd_count', $affiliate_id)))
+                    ->view('filament.widgets.custom-stat', 
+                        [
+                            'title' => 'FTDs Count (Afiliado: ' . $affiliate->name . ')', 
+                            'value' => $this->formatValue($this->getCard('ftd_count', $affiliate_id)),
+                            'color' => 'green'
+                        ]
+                    );
+
+                    $cards[] = Stat::make('Total de registros (Afiliado: ' . $affiliate->name . ')', $this->formatValue($this->getCard('registration_count', $affiliate_id)))
+                    ->view('filament.widgets.custom-stat', 
+                        [
+                            'title' => 'Total de registros (Afiliado: ' . $affiliate->name . ')', 
+                            'value' => $this->formatValue($this->getCard('registration_count', $affiliate_id)),
+                            'color' => 'yellow'
+                        ]
+                    );
                 }
             }
             // Se o filtro 'affiliate_id' não foi passado, usa o 'profile_id'
