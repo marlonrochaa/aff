@@ -135,7 +135,7 @@ class StatsDepositTotal extends BaseWidget
                     ->view('filament.widgets.custom-stat', 
                         [
                             'title' => 'FTDs Count (Gerente: ' . $manager->name . ')', 
-                            'value' => $this->formatValue($this->getCard('ftd_count', null, null, $manager_id)),
+                            'value' =>$this->getCard('ftd_count', null, null, $manager_id),
                             'color' => 'green'
                         ]
                     );
@@ -143,7 +143,7 @@ class StatsDepositTotal extends BaseWidget
                     ->view('filament.widgets.custom-stat', 
                         [
                             'title' => 'Total de registros (Gerente: ' . $manager->name . ')', 
-                            'value' => $this->formatValue($this->getCard('registration_count', null, null, $manager_id)),
+                            'value' =>$this->getCard('registration_count', null, null, $manager_id),
                             'color' => 'yellow'
                         ]
                     );
