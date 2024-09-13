@@ -6,6 +6,7 @@ use App\Filament\Widgets\Sheet\DepositTotalSheet;
 use App\Filament\Widgets\Sheet\FtdCountSheet;
 use App\Filament\Widgets\Sheet\FtdTotalSheet;
 use App\Filament\Widgets\Sheet\RegistrationSheet;
+use App\Filament\Widgets\Sheet\StatsTotal;
 use App\Models\Affiliate;
 use Carbon\Carbon;
 use Filament\Forms\Components\DatePicker;
@@ -67,6 +68,7 @@ class Admin extends Page
     protected function getHeaderWidgets(): array
     {
         return [
+            StatsTotal::class,
             DepositTotalSheet::class,
             FtdCountSheet::class,
             FtdTotalSheet::class,
