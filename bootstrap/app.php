@@ -21,7 +21,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withSchedule(function (Schedule $schedule) {
         $schedule->command(SyncAffiliate::class)->everyFifteenMinutes();
         $schedule->command(SyncCommission::class)->everyThirtyMinutes();
-       // $schedule->command(SyncSheet::class)->everyThirtyMinutes();
+        $schedule->command(SyncSheet::class)->dailyAt('09:00');;
+        $schedule->command(SyncSheet::class)->dailyAt('11:00');;
         
     })
     ->withExceptions(function (Exceptions $exceptions) {
